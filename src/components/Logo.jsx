@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Logo = ({ size = 40, withText = true }) => {
+const Logo = ({ size = 30, withText = true }) => {
 	return (
 		<motion.div
 			className="flex items-center gap-2"

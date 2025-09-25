@@ -1,0 +1,22 @@
+{
+	"name": "SoroSocket",
+	"short_name": "SoroSocket",
+	"description": "SoroSocket is a real-time Gen Z Nigerian-themed chat app powered by WebSockets.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#1e293b",
+	"theme_color": "#2563eb",
+	"orientation": "portrait",
+	"icons": [
+		{
+			"src": "/logo.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/logo.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
