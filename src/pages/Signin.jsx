@@ -3,12 +3,24 @@ import { Custominput, Toast } from "../components";
 import { handleForm, clearError } from "../constants";
 import { palette, animations } from "../styles/styles";
 import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../../services/service";
 
 const Signin = () => {
 	const [form, setForm] = useState({ username: "", password: "" });
 	const [error, setError] = useState("");
 
-	const handleSubmit = (e) => {
+	const mutation = useMutation({
+		mutationFn: loginUser,
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		onError: (error) => {
+			setError(error.message);
+		},
+	});
+
+	function handleSubmit(e) {
 		e.preventDefault();
 
 		for (const key in form) {
@@ -18,8 +30,8 @@ const Signin = () => {
 			}
 		}
 
-		alert("submitted.");
-	};
+		mutation.mutate(form);
+	}
 
 	useEffect(() => {
 		const cleanup = clearError(error, setError);
@@ -92,6 +104,14 @@ const Signin = () => {
 					type="error"
 					message={error}
 					onClose={() => setError("")}
+					show={true}
+				/>
+			)}
+			{mutation.isSuccess && (
+				<Toast
+					type="success"
+					message={"Login success."}
+					onClose={() => mutation.reset()}
 					show={true}
 				/>
 			)}

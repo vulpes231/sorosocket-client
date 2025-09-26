@@ -3,10 +3,22 @@ import { Custominput, Toast } from "../components";
 import { handleForm, clearError } from "../constants";
 import { palette, animations } from "../styles/styles";
 import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "../../services/service";
 
 const Signup = () => {
 	const [form, setForm] = useState({ username: "", password: "", email: "" });
 	const [error, setError] = useState("");
+
+	const mutation = useMutation({
+		mutationFn: registerUser,
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		onError: (err) => {
+			setError(err.message);
+		},
+	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -18,7 +30,7 @@ const Signup = () => {
 			}
 		}
 
-		alert("submitted.");
+		mutation.mutate(form);
 	};
 
 	useEffect(() => {

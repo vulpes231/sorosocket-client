@@ -2,7 +2,7 @@ export const getAccessToken = () => {
 	return sessionStorage.getItem("token") || null;
 };
 
-export const devUrl = "";
+export const devUrl = "http://localhost:5000";
 export const liveUrl = "";
 
 export const handleForm = (e, form, setForm) => {
