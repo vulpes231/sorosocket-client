@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import { selectNavSlice } from "./features/navSlice";
 import { Navbar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { Landing } from "./pages";
+import { Dashboard, Landing, Profile, Rooms, Signin, Signup } from "./pages";
+import { getAccessToken } from "./constants";
 
 const App = () => {
 	const { darkMode } = useSelector(selectNavSlice);
+
+	const token = getAccessToken();
 
 	useEffect(() => {
 		if (darkMode) {
@@ -20,9 +23,17 @@ const App = () => {
 		<section>
 			<Navbar />
 
-			<div className="min-h-screen mt-[90px] p-6 bg-slate-100 dark:bg-slate-950">
+			<div className="">
 				<Routes>
 					<Route path="/" element={<Landing />} />
+					<Route path="/signin" element={<Signin />} />
+					<Route path="/signup" element={<Signup />} />
+					<Route
+						path="/dashboard"
+						element={!token ? <Signin /> : <Dashboard />}
+					/>
+					<Route path="/rooms" element={!token ? <Signin /> : <Rooms />} />
+					<Route path="/profile" element={!token ? <Signin /> : <Profile />} />
 				</Routes>
 			</div>
 		</section>
