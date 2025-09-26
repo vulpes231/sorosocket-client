@@ -9,9 +9,9 @@ import { selectNavSlice, setDarkMode, setToggle } from "../features/navSlice";
 import { palette, animations } from "../styles/styles";
 
 const navLinks = [
-	{ id: "home", name: "Home" },
-	{ id: "about", name: "About" },
-	{ id: "support", name: "Support" },
+	{ id: "home", name: "Home", path: "/" },
+	{ id: "about", name: "About", path: "/" },
+	{ id: "support", name: "Support", path: "/" },
 ];
 
 const navButtons = [
@@ -43,7 +43,7 @@ const Navbar = () => {
 							whileTap={{ scale: 0.95 }}
 						>
 							<Link
-								to={`/${link.id}`}
+								to={link.path}
 								className={`${palette.font.subheading} ${palette.color.primary}`}
 							>
 								{link.name}
