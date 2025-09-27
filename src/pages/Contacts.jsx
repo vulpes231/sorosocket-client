@@ -3,7 +3,7 @@ import { Authnav } from "../components";
 import Mobileauthnav from "./dash/Mobileauthnav";
 import Sidebar from "./dash/Sidebar";
 
-const Profile = () => {
+const Contacts = () => {
 	return (
 		<section className=" bg-slate-100 dark:bg-slate-950 h-screen">
 			<div className="grid md:grid-cols-4">
@@ -12,7 +12,7 @@ const Profile = () => {
 				</div>
 				<div className="md:col-span-3">
 					<Authnav />
-					<div className="mt-[50px] p-6">Settings</div>
+					<div className="mt-[50px] p-6">Contacts</div>
 				</div>
 				<Mobileauthnav />
 			</div>
@@ -20,4 +20,4 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default Contacts;

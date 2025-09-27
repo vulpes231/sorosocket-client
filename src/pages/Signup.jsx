@@ -115,6 +115,14 @@ const Signup = () => {
 					show={true}
 				/>
 			)}
+			{mutation.isSuccess && (
+				<Toast
+					type="success"
+					message={"Account register success."}
+					onClose={() => mutation.reset()}
+					show={true}
+				/>
+			)}
 		</section>
 	);
 };
