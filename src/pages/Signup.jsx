@@ -38,6 +38,17 @@ const Signup = () => {
 		return cleanup;
 	}, [error]);
 
+	useEffect(() => {
+		let timeout;
+		if (mutation.isSuccess) {
+			setTimeout(() => {
+				mutation.reset();
+				window.location.href = "/signin";
+			}, 3000);
+		}
+		return () => clearTimeout(timeout);
+	}, [mutation.isSuccess]);
+
 	return (
 		<section className="h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 p-6">
 			{/* Card */}
@@ -83,24 +94,17 @@ const Signup = () => {
 						placeHolder="Enter your password"
 					/>
 
-					{/* Actions */}
-					<div className="flex items-center justify-between">
-						<a href="/signin" className={palette.link.base}>
-							Already have an account? <span>Sign In</span>
-						</a>
-					</div>
-
 					<button type="submit" className={`${palette.button.primary} w-full`}>
-						Sign In
+						Sign Up
 					</button>
 				</form>
 
 				{/* Footer */}
 				<div className="text-center mt-6">
 					<p className={palette.font.small}>
-						Don’t have an account?{" "}
-						<a href="/signup" className={palette.link.base}>
-							Sign up
+						Already have an account?{" "}
+						<a href="/signin" className={palette.link.base}>
+							Sign In
 						</a>
 					</p>
 				</div>

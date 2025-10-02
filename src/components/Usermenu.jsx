@@ -6,13 +6,14 @@ import Toast from "./Toast";
 import { clearError } from "../constants";
 
 const menuLinks = [
-	{ id: "home", name: "Home", path: "/" },
-	{ id: "about", name: "About", path: "/" },
-	{ id: "support", name: "Support", path: "/" },
+	{ id: "dash", name: "Dashboard", path: "/chats" },
+	{ id: "profile", name: "Profile", path: "/settings" },
+	{ id: "support", name: "Support", path: "/support" },
 ];
 
 const Usermenu = () => {
 	const [error, setError] = useState("");
+
 	const mutation = useMutation({
 		mutationFn: logoutUser,
 		onSuccess: (data) => {
@@ -25,7 +26,6 @@ const Usermenu = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		mutation.mutate();
 	};
 
@@ -46,13 +46,19 @@ const Usermenu = () => {
 	}, [mutation.isSuccess]);
 
 	return (
-		<div className="absolute top-[50px] right-[16px]">
+		<div className="absolute top-[60px] right-[16px] bg-white dark:bg-slate-900 p-6 dark:border-slate-700 border border-slate-300 flex flex-col gap-4">
 			<span className="flex flex-col gap-4">
 				{menuLinks.map((link) => {
-					return <Link key={link.id}>{link.name}</Link>;
+					return (
+						<Link to={link.path} key={link.id}>
+							{link.name}
+						</Link>
+					);
 				})}
 			</span>
-			<button onClick={handleSubmit}>logout</button>
+			<span>
+				<button onClick={handleSubmit}>Logout</button>
+			</span>
 			{error && (
 				<Toast
 					type="error"

@@ -32,19 +32,22 @@ const Sidebar = () => {
 			initial="hidden"
 			animate="visible"
 			variants={animations.slideRight}
-			className="hidden md:flex flex-col h-full mt-[60px]"
+			className="hidden md:flex flex-col h-full mt-[50px] bg-white dark:bg-slate-900"
 		>
 			<div className="p-4 font-bold text-lg border-b border-slate-200 dark:border-slate-800">
 				SoroSocket
-			</div>
-			<div className="p-4 space-y-3">
-				<button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
-					Start Chat
-				</button>
-				<Custominput placeholder="Search..." />
 			</div>
 		</motion.aside>
 	);
 };
 
 export default Sidebar;
+
+{
+	/* <div className="p-4 space-y-3">
+				<button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
+					Start Chat
+				</button>
+				<Custominput placeholder="Search..." />
+			</div> */
+}

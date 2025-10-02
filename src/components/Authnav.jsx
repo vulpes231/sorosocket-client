@@ -4,18 +4,33 @@ import {
 	LucideSun,
 	LucideUserCircle,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNavSlice, setDarkMode } from "../features/navSlice";
 import Usermenu from "./Usermenu";
 
 import { motion } from "framer-motion";
 import { animations } from "../styles/styles";
+import { getUser } from "../../services/service";
+import { useMutation } from "@tanstack/react-query";
 
 const Authnav = () => {
 	const dispatch = useDispatch();
 	const { darkMode } = useSelector(selectNavSlice);
 	const [showMenu, setShowMenu] = useState(false);
+
+	const [user, setUser] = useState("");
+	const mutation = useMutation({
+		mutationFn: getUser,
+		onSuccess: (data) => {
+			// console.log(data);
+			setUser(data.data);
+		},
+	});
+
+	useEffect(() => {
+		mutation.mutate();
+	}, []);
 	return (
 		<motion.header
 			initial="hidden"
@@ -24,7 +39,12 @@ const Authnav = () => {
 			className="fixed top-0 left-0 w-full z-50 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700"
 		>
 			<nav className="flex justify-between items-center px-6 py-3">
-				<h3 className="font-semibold">Welcome, User</h3>
+				<h3 className="font-semibold whitespace-nowrap">
+					Welcome,{" "}
+					<span className="capitalize">
+						{user?.personal?.username || "user"}
+					</span>
+				</h3>
 				<div className="flex items-center gap-4">
 					<button type="button" className="relative">
 						<LucideMessageCircle className="w-6 h-6" />

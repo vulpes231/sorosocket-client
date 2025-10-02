@@ -2,20 +2,29 @@ import React from "react";
 import { Authnav } from "../components";
 import Mobileauthnav from "./dash/Mobileauthnav";
 import Sidebar from "./dash/Sidebar";
+import Profilecontent from "./profile/Profilecontent";
 
 const Profile = () => {
 	return (
-		<section className=" bg-slate-100 dark:bg-slate-950 h-screen">
-			<div className="grid md:grid-cols-4">
-				<div className="md:col-span-1">
-					<Sidebar />
-				</div>
-				<div className="md:col-span-3">
-					<Authnav />
-					<div className="mt-[50px] p-6">Settings</div>
-				</div>
-				<Mobileauthnav />
+		<section className="bg-slate-100 dark:bg-slate-950 h-screen flex">
+			{/* Sidebar - completely separate from scrollable content */}
+			<div className="hidden md:block flex-shrink-0">
+				<Sidebar />
 			</div>
+
+			{/* Main content area - independent scrolling */}
+			<div className="flex-1 flex flex-col min-w-0">
+				<div className="flex-shrink-0">
+					<Authnav />
+				</div>
+
+				<div className="flex-1 overflow-auto">
+					<Profilecontent />
+				</div>
+			</div>
+
+			{/* Mobile nav */}
+			<Mobileauthnav />
 		</section>
 	);
 };

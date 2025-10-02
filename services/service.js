@@ -27,7 +27,7 @@ export async function registerUser(formData) {
 
 export async function getUser() {
 	try {
-		const response = await api.get("/user", formData);
+		const response = await api.get("/user");
 		return response.data;
 	} catch (error) {
 		// Bubble up actual backend error message if available

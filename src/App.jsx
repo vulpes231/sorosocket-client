@@ -31,7 +31,7 @@ const App = () => {
 		<section>
 			{!token && <Navbar />}
 
-			<div className="">
+			<div className="overflow-hidden">
 				<Routes>
 					<Route path="/" element={<Landing />} />
 					<Route path="/signin" element={<Signin />} />
