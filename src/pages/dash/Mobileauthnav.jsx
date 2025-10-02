@@ -35,7 +35,7 @@ const links = [
 const Mobileauthnav = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	console.log(location.pathname);
+	// console.log(location.pathname);
 	return (
 		<motion.div
 			initial="hidden"

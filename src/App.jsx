@@ -29,17 +29,20 @@ const App = () => {
 
 	return (
 		<section>
-			{token && <Navbar />}
+			{!token && <Navbar />}
 
 			<div className="">
 				<Routes>
 					<Route path="/" element={<Landing />} />
 					<Route path="/signin" element={<Signin />} />
 					<Route path="/signup" element={<Signup />} />
-					<Route path="/chats" element={token ? <Signin /> : <Dashboard />} />
-					<Route path="/rooms" element={token ? <Signin /> : <Rooms />} />
-					<Route path="/settings" element={token ? <Signin /> : <Profile />} />
-					<Route path="/contacts" element={token ? <Signin /> : <Contacts />} />
+					<Route path="/chats" element={!token ? <Signin /> : <Dashboard />} />
+					<Route path="/rooms" element={!token ? <Signin /> : <Rooms />} />
+					<Route path="/settings" element={!token ? <Signin /> : <Profile />} />
+					<Route
+						path="/contacts"
+						element={!token ? <Signin /> : <Contacts />}
+					/>
 				</Routes>
 			</div>
 		</section>

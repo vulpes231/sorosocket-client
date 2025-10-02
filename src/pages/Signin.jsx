@@ -7,12 +7,13 @@ import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../../services/service";
 
 const Signin = () => {
-	const [form, setForm] = useState({ username: "", password: "" });
+	const [form, setForm] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
 	const mutation = useMutation({
 		mutationFn: loginUser,
 		onSuccess: (data) => {
+			sessionStorage.setItem("token", data.token);
 			console.log(data);
 		},
 		onError: (error) => {
@@ -38,6 +39,16 @@ const Signin = () => {
 		return cleanup;
 	}, [error]);
 
+	useEffect(() => {
+		let timeout;
+		if (mutation.isSuccess) {
+			timeout = setTimeout(() => {
+				window.location.href = "/chats";
+			}, 3000);
+		}
+		return () => clearTimeout(timeout);
+	}, [mutation.isSuccess]);
+
 	return (
 		<section className="h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-950 p-6">
 			{/* Card */}
@@ -61,10 +72,10 @@ const Signin = () => {
 				<form onSubmit={handleSubmit} className="flex flex-col gap-5">
 					<Custominput
 						onChange={(e) => handleForm(e, form, setForm)}
-						value={form.username}
-						name="username"
-						label="Username"
-						placeHolder="Enter your username"
+						value={form.email}
+						name="email"
+						label="email"
+						placeHolder="Enter your email"
 					/>
 					<Custominput
 						onChange={(e) => handleForm(e, form, setForm)}

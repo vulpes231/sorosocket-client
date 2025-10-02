@@ -18,7 +18,7 @@ const Custominput = ({
 			className="flex flex-col gap-2 w-full"
 		>
 			{/* Label */}
-			<label htmlFor={name} className={`${palette.font.subheading}`}>
+			<label htmlFor={name} className={`${palette.font.subheading} capitalize`}>
 				{label}
 			</label>
 
